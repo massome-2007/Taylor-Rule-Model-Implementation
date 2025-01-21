@@ -1,0 +1,28 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Parameters
+inflation_target = 2.0  # Central bank's inflation target in percentage
+neutral_interest_rate = 4.0  # Neutral interest rate in percentage
+phi_inflation = 1.5  # Weight on inflation gap
+phi_output = 0.5  # Weight on output gap
+
+# Simulated data
+T = 50  # Time periods
+np.random.seed(42)
+inflation = np.random.normal(2.0, 1.0, T)  # Simulated inflation data
+output_gap = np.random.normal(0.0, 2.0, T)  # Simulated output gap data
+
+# Taylor Rule Calculation
+interest_rate = neutral_interest_rate + phi_inflation * (inflation - inflation_target) + phi_output * output_gap
+
+# Plotting results
+plt.figure(figsize=(12, 8))
+plt.plot(interest_rate, label='Interest Rate')
+plt.axhline(y=neutral_interest_rate, color='r', linestyle='--', label='Neutral Interest Rate')
+plt.xlabel('Time')
+plt.ylabel('Interest Rate (%)')
+plt.title('Taylor Rule-Based Interest Rate Decisions')
+plt.legend()
+plt.grid(True)
+plt.show()
